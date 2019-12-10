@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>TypeScript</section>
+				<section>
+					<h2>Design goals</h2>
+					<ul>
+						<li>Extend JavaScript for writing large apps</li>
+						<li>Adds support for classes, interfaces & modules</li>
+						<li>Development tooling support</li>
+						<li>Compiled JavaScript runs in any browser (or Node.js).</li>
+					</ul>
+				</section>
+				<section>
+					<h2 class="install">Installation</h2>
+					<p class="install">Node.js</p>
+					<pre class="install">npm install -g typescript</pre>
+					<p class="install">Provides a command-line compiler.</p>
+					<pre class="install">tsc source.ts</pre>
+				</section>
+				<section>
+					<h2 class="extension">File Extensions</h2>
+					<ul class="extension__code">
+						<li><pre>.ts for source files.</pre></li>
+						<li><pre>.d.ts for declaration files</pre></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Declaration Source Files in TypeScript</h2>
+					<ul>
+						<li>Analogous to header files in C/C++</li>
+						<li>DOM and jQuery provided with TypeScript</li>
+						<li>Provide type definitions, separate from the corresponding source</li>
+					</ul>
+				</section>
+				<section>
+					<div class="types">
+						<h2 class="types__header">Types</h2>
+						<ul class="types__list">
+							<li><pre>number</pre></li>
+							<li><pre>bool</pre></li>
+							<li><pre>string</pre></li>
+							<li><pre>null</pre></li>
+							<li><pre>undefined</pre></li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<div class="classes">
+						<h2 class=classes__header>Classes</h2>
+						<ul class="classes__list">
+							<li><pre>Parameter property declarations via constructor.</pre></li>
+							<li><pre>Derived classes make use of super calls to parent.</pre></li>
+							<li>
+								<pre>Methods are translated into JavaScript prototype chain -
+more memory efficient than using closures
+with anonymous functions
+public or private member accessibility.
+								</pre>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h2>Classes</h2>
+					<pre>
+					<code>
+class Animal {
+	constructor(public name) { }
+	move(meters) {
+		alert(this.name + " moved " + meters + "m.");
+	}
+}
+
+class Snake extends Animal {
+  move() {
+	alert("Slithering...");
+	super.move(5);
+  }
+}
+
+class Horse extends Animal {
+  move() {
+	alert("Galloping...");
+	super.move(45);
+  }
+}
+						</code>
+					</pre>
+				</section>
+				<section>
+				 <h2>Modules</h2>
+					<ul>
+						<li>Analagous to .NET namespaces</li>
+						<li>Prevents global variable naming collisions</li>
+						<li>Closely aligned with those proposed for ECMAScript 6</li>
+						<li>Allows exposing a public API</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Source File Dependencies</h2>
+					<ul>
+						<li>Compiler automatically determines a source file's dependencies.</li>
+						<li>Uses reference comments and import declarations.</li>
+						<li>All references are analysed for their dependencies.</li>
+					</ul>
+					<p>Import declaration</p>
+					<pre>
+						<code>
+import log = module("log");
+log.message("hello");
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Source Map Support</h2>
+					<ul>
+						<li>You aren't debugging the code that you wrote.</li>
+						<li>TypeScript team have done the hard work for us by providing a Source Map generator in the compiler.</li>
+						<li>Requires either Chrome Canary or WebKit nightly.</li>
+						<li>Allows debugging and breakpoints from .ts files.</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Self hosting</h2>
+					<ul>
+						<li>Compiler is written in TypeScript, so can compile itself to JavaScript.</li>
+						<li>Can be hosted in any ECMAScript 3 compatible runtime.</li>
+						<li>Can host the compiler in a web browser by referencing typescript.js</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Let's speak about advantages and disadvantages</h2>
+				</section>
+				<section>
+					<h1>Thanks for attention</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
